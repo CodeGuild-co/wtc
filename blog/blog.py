@@ -18,14 +18,11 @@ def home():
 
 
 @app.route('/posts/<name>/')
-def posts(name):
-    return render_template('posts/%s.html' % name)
-
 @app.route('/newposts/<name>/')
-def testpost(name):
-    realdata = getallposts()
-    post = realdata[name]
-    return render_template('viewpost.html', title=post['title'], post=post['post'], date=post['date'])
+def posts(name):
+    posts = getallposts()
+    post  = posts[name]
+    return render_template('viewpost.html', title=post['title'], post=post['post'], date=post['date'], posts=posts.items())
 
 if __name__ == '__main__':
     app.secret_key = getenv('SessionKey')
