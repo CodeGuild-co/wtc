@@ -19,6 +19,10 @@ def home():
     posts = getallposts()
     return render_template('home.html', posts=posts.items())
 
+@app.route('/feed')
+def rss():
+    posts = getallposts()
+    return render_template('feed.rss', posts=posts.items())
 
 @app.route('/posts/<name>/')
 @app.route('/newposts/<name>/')
