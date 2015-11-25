@@ -8,11 +8,9 @@
         </div>
     </div>
     <div class="container">
-        <h3>My posts!</h3>
-        <ul>
-            <li><a href="{{ url_for('posts', name='course1') }}">What I want to get out of this course</a></li>
-            <li><a href="{{ url_for('posts', name='beinglazy') }}">Problem solving and being lazy</a></li>
-            <li><a href="{{ url_for('posts', name='git') }}">Git, GitHub and Heroku</a></li>
-        </ul>
+        {% for k, v in posts %}
+            <h3><a href="newposts/{{k}}/">{{ v['title']|title }}</a></h3>
+            <p>{{ v['post'][0]|safe }}</p>
+        {% endfor %}
     </div>
 {% endblock %}

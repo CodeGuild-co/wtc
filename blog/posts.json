@@ -2,15 +2,37 @@
     "course1":
     {
         "title": "What I want to get out of this course",
+        "date": "23/11/15",
         "post": [
             "Hi, I’m Will, a student in Year 12 studying Maths, Further Maths, Physics and ICT. I have been learning how to program in 2009 with VB.Net and have eventually learnt HTML, CSS, JavaScript and C# over the years.",
             "The main thing I want to get out of this course is to try and learn a new programming language (in this case, Python) as well as to meet some likeminded people who are interested in computer science. I have done very little work in Python before (basically “Hello world!” and a few simple if statements), but apparently it is one of the main languages being taught in schools today.",
             "The languages we got to choose from are: PHP, Python, Ruby, Java and JavaScript. As I have plenty of experience in PHP, I chose to learn Python because I have both heard of it before and know that it should be good for web development. People using Java will not have the easiest time on earth in my opinion because of the age and nature of the language (in fact, it is one of the two languages I hate to work with, the other being VB.Net due to the syntax and the fact that you have to make sure the S on Sub is a capital, but it is still a good language to start learning how to program)."
         ]
     },
-    "py": {
-        "title": "Python is easier than I thought",
+    "beinglazy": {
+        "title": "Problem solving and being lazy",
         "date": "25/11/15",
-        "post": []
+        "post": [
+		"The two main things which makes a software engineer is their ability to solve problems and their ability to be lazy.",
+	    "Problem solving is the art of taking a problem and breaking it down into simpler chunks. For example, if I was asked to make a function to generate Fibonacci numbers, I would break it down into the following components:",
+	    "<ul><li>What is the Fibonacci sequence?</li><li>How do I generate it?</li><li>How fast do I have to generate these numbers?</li><li>What is the biggest number going to be?</li><li>Who is asking me to do this?</li><li>What language should I use to do this?</li><li>What text editor should I use?</li></ul>",
+	    "The first two questions may be quite obvious as I need to actually know how to generate these numbers, however, actually knowing what the biggest number is and how fast it needs to be can help. It is important to know who is asking you to do this because a computer scientist may just want a source file with your code in it while someone working in an office will need a proper executable with a user interface.",
+	    "Questions like what text editor I should use probably will only be answered once as you will keep using that text editor for quite a while, while questions like what language I should use will apply to the project you are working on. For example, if two people were working on a project and person A was using Java while person B was using Python, their code will not work together.",
+	    "Being lazy is trying to do something in the shortest time possible. The main parts of being lazy is not having to write code if you don’t have to (copy it from somewhere like StackOverflow, which I might have done myself in the past) to not trying to improve on the code and trying to make it faster if you don’t need to.",
+	    "Being lazy consists of two parts, local laziness and global laziness. Let’s go back to the function to generate Fibonacci numbers. Should I just make it so it will only generate Fibonacci numbers and if you wanted it to generate another number sequence, I will add support for that later or should I make an abstract sequence generator and build a Fibonacci generator on top of that so it will be easier to add other sequences at a later date (although someone has already written a Fibonacci sequence generator and posted it to StackOverflow so I can just copy it).",
+	    "Two acronyms for being lazy are DRY (Don’t Repeat Yourself, don’t copy and paste code in the same project) and KISS (Keep It Simple Stupid, don’t overcomplicate things and add extra functionality that you won’t use later on).",
+	    "Note: I have not copied this post about being lazy from somewhere else, at that is too lazy to begin with and will cause more problems down the line."
+	]
+    },
+    "git":
+    {
+        "title": "Git, GitHub and Heroku",
+        "date": "23/11/15",
+        "post": [
+            "<a href=”http://github.com”>GitHub</a> and <a href=”http://heroku.com”>Heroku</a> are brilliant platforms for developing and hosting this blog.",
+	    "GitHub is a platform for developing and sharing projects. It uses the Git version control system and is completely free for open source applications. All you really require is the Git client (although you can use the GitHub website itself, if you’re ready for a painful experience).",
+	    "Heroku is a platform for developing and hosting web applications. It supports a wide variety of languages and connects straight to GitHub. If I am going to work on any projects in the future which requires full time hosting, I will definitely consider using this.",
+		"I also found Billy Mayor’s blog today, the fool gave us his <a href=http://williammayor.co.uk>domain name</a> last night while we did the final steps of setting up Heroku after our network died yesterday (15 people all trying to connect to the same website over a single cable was never destined to work), don’t know if he was thinking that we would take a look at it."
+        ]
     }
 }
