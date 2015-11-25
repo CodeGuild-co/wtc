@@ -7,7 +7,10 @@ app = Flask(__name__)
 
 def getallposts():
     data = ''
-    with open('posts.json', 'r') as f:
+    fn = 'blog/posts.json'
+    if getenv('DYNO') != None:
+        fn = '/app/blog/posts.json'
+    with open(fn, 'r') as f:
         data = f.read()
     return json.loads(data)
 
