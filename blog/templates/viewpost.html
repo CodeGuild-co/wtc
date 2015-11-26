@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container">
         <h3>{{ title }}</h3>
-        <p>Posted {{ pdate }}</p>
+        <p>Posted {{ date }}</p>
         {% for paragraph in post %}
           <p>{{ paragraph|safe }}</p>
         {% endfor %}

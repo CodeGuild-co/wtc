@@ -1,7 +1,12 @@
 from flask import Flask, render_template
 from os import getenv
-
+from pymongo import MongoClient
+from datetime import datetime
 import json
+
+client = MongoClient(getenv('MONGOLAB_URI'))
+db = client.heroku_g8btf552
+posts = db.posts
 
 app = Flask(__name__)
 
@@ -16,20 +21,17 @@ def getallposts():
 
 @app.route('/')
 def home():
-    posts = getallposts()
-    return render_template('home.html', posts=posts.items())
+    return render_template('home.html', posts=list(posts.find(sort=[('date', -1)])))
 
 @app.route('/feed')
 def rss():
-    posts = getallposts()
-    return render_template('feed.rss', posts=posts.items())
+    return render_template('feed.rss', posts=list(posts.find(sort=[('date', -1)])))
 
 @app.route('/posts/<name>/')
 @app.route('/newposts/<name>/')
-def posts(name):
-    posts = getallposts()
-    post  = posts[name]
-    return render_template('viewpost.html', title=post['title'], post=post['post'], date=post['date'], posts=posts.items())
+def viewpost(name):
+    post  = posts.find_one({'pid': name})
+    return render_template('viewpost.html', title=post['title'], post=post['post'], date=datetime.fromtimestamp(post['date']).strftime('%d-%m-%Y'), posts=list(posts.find(sort=[('date', -1)])))
 
 if __name__ == '__main__':
     app.secret_key = getenv('SessionKey')

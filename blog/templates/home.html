@@ -8,8 +8,8 @@
         </div>
     </div>
     <div class="container">
-        {% for k, v in posts %}
-            <h3><a href="newposts/{{k}}/">{{ v['title']|title }}</a></h3>
+        {% for v in posts %}
+            <h3><a href="/posts/{{v['pid']}}/">{{ v['title']|title }}</a></h3>
             <p>{{ v['post'][0]|safe }}</p>
         {% endfor %}
     </div>
