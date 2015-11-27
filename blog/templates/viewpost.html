@@ -1,5 +1,10 @@
 {% extends "master.html" %}
 
+{% block meta %}
+<meta property="og:title"       content="{{ title }}" />
+<meta property="og:description" content="{{ post[0] }}" />
+{% endblock %}
+
 {% block content %}
     <div class="container">
         <h3>{{ title }}</h3>
@@ -7,5 +12,6 @@
         {% for paragraph in post %}
           <p>{{ paragraph|safe }}</p>
         {% endfor %}
+        <div class="fb-share-button" data-layout="button_count"></div>
     </div>
 {% endblock %}
