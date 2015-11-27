@@ -27,6 +27,10 @@ def home():
 def rss():
     return render_template('feed.rss', posts=list(posts.find(sort=[('date', -1)])))
 
+@app.route('/about')
+def about():
+    return render_template('about.html', posts=list(posts.find(sort=[('date', -1)])))
+
 @app.route('/posts/<name>/')
 @app.route('/newposts/<name>/')
 def viewpost(name):
