@@ -1,3 +1,7 @@
+# TODO: Fix this on my local python installation
+import sys
+sys.path.append('.')
+
 from flask import Flask, render_template
 from os import getenv
 from pymongo import MongoClient
