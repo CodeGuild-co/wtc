@@ -37,6 +37,15 @@ def viewpost(name):
     post  = posts.find_one({'pid': name})
     return render_template('viewpost.html', title=post['title'], post=post['post'], date=datetime.fromtimestamp(post['date']).strftime('%d-%m-%Y'), posts=list(posts.find(sort=[('date', -1)])))
 
+@app.route('/login', methods=['GET'])
+def login():
+    return render_template('viewpost.html', posts=list(posts.find(sort=[('date', -1)])))
+
+@app.route('/login', methods=['POST'])
+def login():
+    # TODO: Add login logic here
+    return render_template('viewpost.html', posts=list(posts.find(sort=[('date', -1)])))
+
 if __name__ == '__main__':
     app.secret_key = getenv('SessionKey')
     app.run(debug=True, host='0.0.0.0')
