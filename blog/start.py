@@ -7,7 +7,7 @@ from os import getenv
 from pymongo import MongoClient
 from datetime import datetime
 import json
-from blog.util import gargs
+from blog.util import gargs, adminpage
 
 client = MongoClient(getenv('MONGOLAB_URI'))
 db = client.heroku_g8btf552
@@ -22,8 +22,13 @@ password = getenv('password', 'test')
 def findposts():
     return list(posts.find(sort=[('date', -1)]))
 
+def getadmin():
+    if session['isadmin'] == None:
+        session['isadmin'] = False
+    return session['isadmin']
+
 # No longer do we have to provide posts
-render_template = gargs(render_template, posts_ascall=findposts)
+render_template = gargs(render_template, posts_ascall=findposts, admin_ascall=getadmin)
 
 @app.route('/')
 def home():
@@ -59,6 +64,15 @@ def login():
 @app.route('/logout')
 def logout():
     session['isadmin'] = False
+    return redirect('/')
+
+@app.route('/addpost', methods=['GET','POST'])
+@adminpage
+def addpost():
+    if request.method == 'POST':
+        return 'TODO'
+    else:
+        return 'TODO'
 
 if __name__ == '__main__':
     app.secret_key = getenv('SessionKey') or 'not will coates'
