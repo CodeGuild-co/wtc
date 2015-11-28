@@ -52,9 +52,9 @@ def login():
         if un == username and pw == password:
             session['isadmin'] = True
             return redirect('/')
-        return render_template('login.html', un=un, posts=list(posts.find(sort=[('date', -1)])))
+        return render_template('login.html', un=un)
     else:
-        return render_template('login.html', posts=list(posts.find(sort=[('date', -1)])))
+        return render_template('login.html')
 
 @app.route('/logout')
 def logout():
