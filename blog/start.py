@@ -3,7 +3,7 @@ from os import getenv
 from pymongo import MongoClient
 from datetime import datetime
 import json
-import util
+from blog.util import gargs
 
 client = MongoClient(getenv('MONGOLAB_URI'))
 db = client.heroku_g8btf552
@@ -15,7 +15,7 @@ def findposts():
     return list(posts.find(sort=[('date', -1)]))
 
 # No longer do we have to provide posts
-render_template = util.gargs(render_template, posts_ascall=findposts)
+render_template = gargs(render_template, posts_ascall=findposts)
 
 @app.route('/')
 def home():
