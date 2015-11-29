@@ -2,7 +2,6 @@
 import sys
 sys.path.append('.')
 
-import logging
 from flask import Flask, render_template, redirect, request, session
 from os import getenv
 from pymongo import MongoClient
@@ -20,18 +19,7 @@ posts = db.posts
 
 app = Flask(__name__)
 
-# Configure logging.
-app.debug = True
-app.logger.setLevel(logging.DEBUG)
-del app.logger.handlers[:]
-
-handler = logging.StreamHandler(stream=sys.stdout)
-handler.setLevel(logging.DEBUG)
-handler.formatter = logging.Formatter(
-    fmt=u"%(asctime)s level=%(levelname)s %(message)s",
-    datefmt="%Y-%m-%dT%H:%M:%SZ",
-)
-app.logger.addHandler(handler)
+app.secret_key = getenv('SessionKey', 'not will coates')
 
 # TODO: Move to database???
 # TODO: Encrypt password
@@ -139,5 +127,4 @@ def deletepost(name):
     return redirect('/')
 
 if __name__ == '__main__':
-    app.secret_key = getenv('SessionKey', 'not will coates')
     app.run(debug=True, host='0.0.0.0')
