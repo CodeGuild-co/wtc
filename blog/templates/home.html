@@ -8,9 +8,21 @@
         </div>
     </div>
     <div class="container">
-        {% for v in posts %}
-            <h3><a href="/posts/{{v['pid']}}/">{{ v['title']|title }}</a></h3>
-            <p>{{ v['post'][0]|safe }}</p>
-        {% endfor %}
+        <div class="row">
+            <div class="col-xs-12 col-md-9">
+                {% for v in posts %}
+                    <h3><a href="/posts/{{v['pid']}}/">{{ v['title']|title }}</a></h3>
+                    <p>{{ v['post'][0]|safe }}</p>
+                {% endfor %}
+            </div>
+            <div class="col-xs-12 col-md-3">
+                <h3>Tags</h3>
+                <ul class="list-inline">
+                    {% for t in tags %}
+                        <li><a href="/viewtag/{{ t }}/" class="label label-default">{{ t }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
     </div>
 {% endblock %}

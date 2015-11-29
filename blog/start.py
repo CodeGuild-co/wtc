@@ -23,7 +23,15 @@ render_template = gargs(render_template, posts_ascall=findposts)
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    posts = findposts()
+    tags = {}
+    for p in posts:
+        for t in p['tags']:
+            if t not in tags:
+                tags[t] = 1
+            else:
+                tags[t] += 1
+    return render_template('home.html', tags=sorted(tags, key=tags.get, reverse=True))
 
 @app.route('/feed')
 def rss():
