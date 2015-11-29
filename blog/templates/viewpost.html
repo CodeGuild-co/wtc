@@ -10,8 +10,8 @@
         <h1>{{ post['title'] }}</h1>
         {% if admin %}
         <div class="btn-group" role="group" aria-label="...">
-            <a href="/editpost" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-            <a href="/deletepost" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+            <a href="/editpost/{{ post['pid'] }}/" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+            <a href="/deletepost/{{ post['pid'] }}/" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</a>
         </div>
         {% endif %}
         <p>Posted {{ date }}</p>

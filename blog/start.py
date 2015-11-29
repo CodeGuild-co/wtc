@@ -83,7 +83,7 @@ def addpost():
 
 @app.route('/editpost/<name>/', methods=['GET','POST'])
 @adminpage
-def editpost():
+def editpost(name):
     if request.method == 'POST':
         return 'TODO'
     else:
@@ -91,7 +91,7 @@ def editpost():
         
 @app.route('/deletepost/<name>/', methods=['GET','POST'])
 @adminpage
-def deletepost():
+def deletepost(name):
     if request.method == 'POST':
         return 'TODO'
     else:
