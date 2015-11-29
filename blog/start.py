@@ -75,5 +75,5 @@ def addpost():
         return 'TODO'
 
 if __name__ == '__main__':
-    app.secret_key = getenv('SessionKey') or 'not will coates'
+    app.secret_key = getenv('SessionKey', 'not will coates')
     app.run(debug=True, host='0.0.0.0')
