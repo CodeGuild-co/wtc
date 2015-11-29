@@ -4,11 +4,11 @@
         <title>Will Coates' Blog</title>
         <link>http://wtc.codeguild.co</link>
         <description>Will Coates' Programmng Blog</description>
-{% for v in posts %}
+{% for v in posts[:10] %}
         <item>
             <title>{{ v['title'] }}</title>
             <link>http://wtc.codeguild.co/posts/{{ v['pid'] }}/</link>
-            <description><![CDATA[{{ v['post'][0] }}]]></description>
+            <description><![CDATA[ {{ v['post'][0] }} ]]></description>
         </item>
 {% endfor %}
     </channel>
