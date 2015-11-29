@@ -89,13 +89,11 @@ def editpost(name):
     else:
         return 'TODO'
         
-@app.route('/deletepost/<name>/', methods=['GET','POST'])
+@app.route('/deletepost/<name>/')
 @adminpage
 def deletepost(name):
-    if request.method == 'POST':
-        return 'TODO'
-    else:
-        return 'TODO'
+    posts.delete_one({'pid': name})
+    return redirect('/')
 
 if __name__ == '__main__':
     app.secret_key = getenv('SessionKey', 'not will coates')
