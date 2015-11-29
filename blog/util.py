@@ -1,4 +1,5 @@
 from flask import redirect, session
+from functools import wraps
 
 def ascallparse(data):
     newdata = data.copy()
@@ -17,6 +18,7 @@ def gargs(method, **dkwargs):
 	return newmethod
 
 def adminpage(method):
+    @wraps(method)
     def newmethod(*args, **kwargs):
         if session['isadmin'] == True:
             return method(*args, **kwargs)
