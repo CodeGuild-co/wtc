@@ -19,6 +19,19 @@ posts = db.posts
 
 app = Flask(__name__)
 
+# Configure logging.
+app.debug = True
+app.logger.setLevel(logging.DEBUG)
+del app.logger.handlers[:]
+
+handler = logging.StreamHandler(stream=sys.stdout)
+handler.setLevel(logging.DEBUG)
+handler.formatter = logging.Formatter(
+    fmt=u"%(asctime)s level=%(levelname)s %(message)s",
+    datefmt="%Y-%m-%dT%H:%M:%SZ",
+)
+app.logger.addHandler(handler)
+
 # TODO: Move to database???
 # TODO: Encrypt password
 username = getenv('username', 'test')
