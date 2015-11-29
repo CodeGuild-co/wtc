@@ -10,7 +10,7 @@ import json
 from blog.util import gargs
 
 client = MongoClient(getenv('MONGOLAB_URI'))
-db = client.heroku_g8btf552
+db = client.get_default_database()
 posts = db.posts
 
 app = Flask(__name__)
@@ -27,7 +27,8 @@ def home():
 
 @app.route('/feed')
 def rss():
-    return render_template('feed.rss')
+    # Thanks stack overflow!
+    return render_template('feed.rss'), 200, {'Content-Type': 'application/rss+xml' }
 
 @app.route('/about')
 def about():
@@ -37,7 +38,13 @@ def about():
 @app.route('/newposts/<name>/')
 def viewpost(name):
     post  = posts.find_one({'pid': name})
-    return render_template('viewpost.html', title=post['title'], post=post['post'], date=datetime.fromtimestamp(post['date']).strftime('%d-%m-%Y'))
+    date  = datetime.fromtimestamp(post['date']).strftime('%d-%m-%Y')
+    return render_template('viewpost.html', post=post, date=date)
+
+@app.route('/tags/<name>/')
+def viewtag(name):
+    tagged = list(posts.find({ 'tags': { '$in': [name] } }, sort=[('date', -1)]))
+    return render_template('viewtag.html', name=name, tagged=tagged)
 
 if __name__ == '__main__':
     app.secret_key = getenv('SessionKey')

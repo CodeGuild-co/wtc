@@ -1,0 +1,11 @@
+{% extends "master.html" %}
+
+{% block content %}
+    <div class="container">
+        <h1>Posts tagged <span class="label label-primary">{{ name }}</span></h1>
+        {% for v in tagged %}
+            <h3><a href="/posts/{{v['pid']}}/">{{ v['title']|title }}</a></h3>
+            <p>{{ v['post'][0]|safe }}</p>
+        {% endfor %}
+    </div>
+{% endblock %}

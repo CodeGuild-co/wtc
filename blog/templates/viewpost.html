@@ -1,17 +1,22 @@
 {% extends "master.html" %}
 
 {% block meta %}
-<meta property="og:title"       content="{{ title }}" />
-<meta property="og:description" content="{{ post[0] }}" />
+<meta property="og:title"       content="{{ post['title'] }}" />
+<meta property="og:description" content="{{ post['post'][0] }}" />
 {% endblock %}
 
 {% block content %}
     <div class="container">
-        <h3>{{ title }}</h3>
+        <h1>{{ post['title'] }}</h1>
         <p>Posted {{ date }}</p>
-        {% for paragraph in post %}
-          <p>{{ paragraph|safe }}</p>
+        {% for p in post['post'] %}
+          <p>{{ p|safe }}</p>
         {% endfor %}
+        <div id="tags">
+            {% for t in post['tags'] %}
+            <a href="/tags/{{ t }}/" class="label label-default">{{ t }}</a>
+            {% endfor %}
+        </div>
         <div class="fb-like" data-show-faces="true" data-share="true" data-colorscheme="dark"></div>
         <div class="fb-comments" data-numposts="5" data-colorscheme="dark" data-width="100%"></div>
     </div>
