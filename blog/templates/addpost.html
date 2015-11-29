@@ -1,0 +1,13 @@
+{% extends "master.html" %}
+
+{% block content %}
+    <div class="container">
+		<form action="/addpost" method="post">
+			<input class="form-control" name="title" type="text" placeholder="Title" />
+			<input class="form-control" name="id" type="text" placeholder="Post ID" />
+			<textarea class="form-control" name="post" placeholder="Post"></textarea>
+			<input class="form-control" name="tags" type="text" placeholder="tag1,tag2" />
+			<button type="submit" class="btn btn-primary">Post</button>
+		</form>
+    </div>
+{% endblock %}

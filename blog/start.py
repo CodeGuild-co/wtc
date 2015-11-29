@@ -8,6 +8,10 @@ from pymongo import MongoClient
 from datetime import datetime
 import json
 from blog.util import gargs, adminpage
+import facebook
+import calendar
+import time
+
 
 client = MongoClient(getenv('MONGOLAB_URI'))
 db = client.get_default_database()
@@ -19,6 +23,9 @@ app = Flask(__name__)
 # TODO: Encrypt password
 username = getenv('username', 'test')
 password = getenv('password', 'test')
+
+# Facebook graph API
+graph = facebook.GraphAPI(access_token=getenv('FB_ACCESSKEY'), version='2.2')
 
 def findposts():
     return list(posts.find(sort=[('date', -1)]))
@@ -77,9 +84,23 @@ def logout():
 @adminpage
 def addpost():
     if request.method == 'POST':
-        return 'TODO'
+        data = {
+            'title': request.form['title'],
+            'pid': request.form['id'],
+            'post': request.form['post'].replace('\r','').split("\n\n"),
+            'date': calendar.timegm(time.gmtime()),
+            'tags': request.form['tags'].split(',')
+        }
+        posts.insert(data)
+        graph.put_wall_post('I have just added a post to my blog!', attachment={
+            'name': data['title'],
+            'link': 'http://wtc.codeguild.co/posts/%s/' % data['pid'],
+            'caption': 'Will Coates\' Blog',
+            'description': data['post'][0]
+        })
+        return redirect('/posts/%s/' % data['pid'])
     else:
-        return 'TODO'
+        return render_template('addpost.html')
 
 @app.route('/editpost/<name>/', methods=['GET','POST'])
 @adminpage
