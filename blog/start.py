@@ -2,6 +2,7 @@
 import sys
 sys.path.append('.')
 
+import logging
 from flask import Flask, render_template, redirect, request, session
 from os import getenv
 from pymongo import MongoClient
