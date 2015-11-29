@@ -62,6 +62,14 @@
               <a type="application/rss+xml" href="/feed">RSS feed</a>
             </li>
           </ul>
+          <ul class="nav navbar-nav navbar-right">
+              {% if admin %}
+              <li><a href="/addpost"><span class="glyphicon glyphicon-plus"></span></a></li>
+              <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span></a></li>
+              {% else %}
+              <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span></a></li>
+              {% endif %}
+          </ul>
         </div>
       </div>
     </nav>

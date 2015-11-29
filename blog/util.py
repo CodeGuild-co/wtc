@@ -1,3 +1,6 @@
+from flask import redirect, session
+from functools import wraps
+
 def ascallparse(data):
     newdata = data.copy()
     for k, v in data.items():
@@ -13,3 +16,12 @@ def gargs(method, **dkwargs):
 		t.update(kwargs)
 		return method(*args, **t)
 	return newmethod
+
+def adminpage(method):
+    @wraps(method)
+    def newmethod(*args, **kwargs):
+        if session['isadmin'] == True:
+            return method(*args, **kwargs)
+        else:
+            return redirect('/login')
+    return newmethod
