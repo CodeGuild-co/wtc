@@ -23,7 +23,7 @@ def findposts():
     return list(posts.find(sort=[('date', -1)]))
 
 def getadmin():
-    if session['isadmin'] == None:
+    if 'isadmin' not in session:
         session['isadmin'] = False
     return session['isadmin']
 
