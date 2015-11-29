@@ -15,6 +15,7 @@ posts = db.posts
 
 app = Flask(__name__)
 
+# TODO: Move to database???
 # TODO: Encrypt password
 username = getenv('username', 'test')
 password = getenv('password', 'test')
@@ -43,7 +44,6 @@ def about():
     return render_template('about.html')
 
 @app.route('/posts/<name>/')
-@app.route('/newposts/<name>/')
 def viewpost(name):
     post  = posts.find_one({'pid': name})
     return render_template('viewpost.html', title=post['title'], post=post['post'], date=datetime.fromtimestamp(post['date']).strftime('%d-%m-%Y'))
@@ -69,6 +69,22 @@ def logout():
 @app.route('/addpost', methods=['GET','POST'])
 @adminpage
 def addpost():
+    if request.method == 'POST':
+        return 'TODO'
+    else:
+        return 'TODO'
+
+@app.route('/editpost/<name>/', methods=['GET','POST'])
+@adminpage
+def editpost():
+    if request.method == 'POST':
+        return 'TODO'
+    else:
+        return 'TODO'
+        
+@app.route('/deletepost/<name>/', methods=['GET','POST'])
+@adminpage
+def deletepost():
     if request.method == 'POST':
         return 'TODO'
     else:
