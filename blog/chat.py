@@ -56,3 +56,32 @@ def handle_message(json):
 			'msg': 'You have not logged in to Facebook yet. Please log in to continue.',
 			'role': 'error'
 		})
+
+@socketio.on('connect')
+def connect():
+	if 'accesskey' not in session:
+		return False
+	resp = ''
+	with urlopen('https://graph.facebook.com/v2.3/me?client_id=%s&client_secret=%s&accses_token=%s' % (fb_appid, fb_secret, session['accesskey'])) as r:
+		resp = r.read()
+	j = loadjson(resp.decode("utf-8"))
+	session['displayname'] = j['name']
+	emit('message', {
+		'room': 'broadcast',
+		'msg': 'Welcome to Will Coates\' Chat',
+		'role': 'notice'
+	}, broadcast=True, include_self=False)
+	emit('message', {
+		'room': 'willcoates',
+		'msg': escape('%s has joined the chat!' % session['displayname']),
+		'role': 'notice'
+	}, broadcast=True, include_self=False)
+	return True
+
+@socketio.on('disconnect')
+def disconnect():
+	emit('message', {
+		'room': 'willcoates',
+		'msg': escape('%s has left the chat!' % session['displayname']),
+		'role': 'notice'
+	}, broadcast=True, include_self=False)
