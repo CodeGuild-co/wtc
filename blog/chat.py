@@ -27,7 +27,7 @@ def chat():
 			resp = ''
 			with urlopen('https://graph.facebook.com/v2.3/oauth/access_token?client_id=%s&redirect_uri=http://wtc.codeguild.co/chat&client_secret=%s&code=%s' % (fb_appid, fb_secret, request.args['code'])) as r:
 				resp = r.read()
-			j = loadjson(resp)
+			j = loadjson(resp.decode("utf-8"))
 			if 'access_token' in j:
 				session['accesskey'] = j['access_token']
 				return render_template('chat.html')
