@@ -25,7 +25,7 @@ def chat():
 			return 'You must login via Facebook to use our chat!'
 		elif 'code' in request.args:
 			resp = ''
-			with urlopen('https://graph.facebook.com/v2.3/ouath/access_token?client_id=%s&redirect_uri=http://wtc.codeguild.co/chat&client_secret=%s&code=%s' % (fb_appid, fb_secret, request.args['code'])) as r:
+			with urlopen('https://graph.facebook.com/v2.3/oauth/access_token?client_id=%s&redirect_uri=http://wtc.codeguild.co/chat&client_secret=%s&code=%s' % (fb_appid, fb_secret, request.args['code'])) as r:
 				resp = r.read()
 			j = loadjson(resp)
 			if 'access_token' in j:
