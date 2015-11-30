@@ -25,3 +25,8 @@ def adminpage(method):
         else:
             return redirect('/login')
     return newmethod
+    
+# No longer do we have to provide posts
+render_template = None
+
+app = None

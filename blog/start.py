@@ -2,32 +2,26 @@
 import sys
 sys.path.append('.')
 
-from flask import Flask, render_template, redirect, request, session
+from flask import Flask, redirect, request, session
+import flask
+
 from os import getenv
 from pymongo import MongoClient
 from datetime import datetime
 import json
-from blog.util import gargs, adminpage
 import facebook
 import calendar
 import time
 
+from blog import util
 
 client = MongoClient(getenv('MONGOLAB_URI'))
 db = client.get_default_database()
 posts = db.posts
 
-app = Flask(__name__)
+util.app = Flask(__name__)
 
-app.secret_key = getenv('SessionKey', 'not will coates')
-
-# TODO: Move to database???
-# TODO: Encrypt password
-username = getenv('username', 'test')
-password = getenv('password', 'test')
-
-# Facebook graph API
-graph = facebook.GraphAPI(access_token=getenv('FB_ACCESSKEY'), version='2.2')
+util.app.secret_key = getenv('SessionKey', 'not will coates')
 
 def findposts():
     return list(posts.find(sort=[('date', -1)]))
@@ -37,8 +31,18 @@ def getadmin():
         session['isadmin'] = False
     return session['isadmin']
 
-# No longer do we have to provide posts
-render_template = gargs(render_template, posts_ascall=findposts, admin_ascall=getadmin)
+util.render_template = util.gargs(flask.render_template, posts_ascall=findposts, admin_ascall=getadmin)
+
+from blog.util import adminpage, render_template, app, gargs
+from blog.chat import socketio
+
+# TODO: Move to database???
+# TODO: Encrypt password
+username = getenv('username', 'test')
+password = getenv('password', 'test')
+
+# Facebook graph API
+graph = facebook.GraphAPI(access_token=getenv('FB_ACCESSKEY'), version='2.2')
 
 @app.route('/')
 def home():
@@ -127,4 +131,5 @@ def deletepost(name):
     return redirect('/')
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.debug = True
+    socketio.run(app)
