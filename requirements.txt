@@ -1,6 +1,6 @@
 -e git://github.com/pythonforfacebook/facebook-sdk.git@939813df5df500688d43234621a74d4a6fd7233d#egg=facebook_sdk-master
 Flask==0.10.1
-Flask-SocketIO=1.1
+Flask-SocketIO==1.1
 eventlet==0.17.4
 gunicorn==19.3.0
 Jinja2==2.8
