@@ -1,10 +1,30 @@
 {% extends "master.html" %}
 
 {% block content %}
+    <style>
+        #chat
+        {
+            position: fixed;
+            left: 10px;
+            right: 10px;
+            top: 100px;
+            bottom: 56px;
+            overflow-x: inherit;
+            overflow-y: scroll;
+        }
+        
+        #messagearea
+        {
+            position: fixed;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+        }
+    </style>
     <div class="container">
         <div id="chat">
         </div>
-        <div>
+        <div id="messagearea">
             <form>
                 <div class="row">
                     <div class="col-xs-10 col-md-11"><input class="form-control" id="msg" placeholder="Message" /></div>
@@ -24,7 +44,13 @@
             rtc['notice'] = 'text-center text-mute';
             
             socket.on('message', function(msg){
+                var sh = document.getElementById("chat").scrollHeight;
+                var scroll = $("#chat").scrollTop() >= sh - 10;
                 $("#chat").append($("<div></div>").addClass(rtc[msg.role]).html(msg.msg));
+                if (scroll)
+                {
+                    $("#chat").scrollTop(sh);
+                }
             });
             $("#send").click(function(){
                 var msg = $("#msg").val();

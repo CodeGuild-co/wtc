@@ -72,8 +72,15 @@ def connect():
 
 @socketio.on('disconnect')
 def disconnect():
-	emit('message', {
-		'room': 'willcoates',
-		'msg': escape('%s has left the chat!' % session['displayname']),
-		'role': 'notice'
-	}, broadcast=True)
+	if 'displayname' in session:
+		emit('message', {
+			'room': 'willcoates',
+			'msg': escape('%s has left the chat!' % session['displayname']),
+			'role': 'notice'
+		}, broadcast=True)
+	else:
+		emit('message', {
+			'room': 'willcoates',
+			'msg': 'Connection dropped on connect',
+			'role': 'notice'
+		}, broadcast=True)
