@@ -2,14 +2,29 @@
 
 {% block content %}
     <div class="container">
-        
+        <div id="chat">
+        </div>
+        <div>
+            <form>
+                <div class="row">
+                    <div class="col-xs-10 col-md-11"><input class="form-control" id="msg" placeholder="Message" /></div>
+                    <div class="col-xs-2 col-md-1"><button type="submit" class="btn btn-primary" id="send">Send</button></div>
+                </div>
+            </form>
+        </div>
     </div>
     <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
     <script>
         $(function(){
             var socket = io();
+            var rtc = new Array();
+            rtc['message'] = '';
+            rtc['mymessage'] = 'text-right text-primary';
+            rtc['error'] = 'text-center text-danger';
+            rtc['notice'] = 'text-center text-mute';
+            
             socket.on('message', function(msg){
-                $("#chat").append($("<div></div>").html(msg.msg));
+                $("#chat").append($("<div></div>").addClass(rtc[msg.role]).html(msg.msg));
             });
             $("#send").click(function(){
                 var msg = $("#msg").val();
@@ -18,6 +33,7 @@
                     'msg': msg,
                     'room': 'willcoates'
                 });
+                return false;
             });
         });
     </script>
