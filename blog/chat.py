@@ -68,7 +68,7 @@ def connect():
 		'room': 'willcoates',
 		'msg': escape('%s has joined the chat!' % session['displayname']),
 		'role': 'notice'
-	}, broadcast=True, include_self=False)
+	}, broadcast=True)
 	return True
 
 @socketio.on('disconnect')
