@@ -55,7 +55,7 @@ def connect():
 	if 'accesskey' not in session:
 		return False
 	resp = ''
-	with urlopen('https://graph.facebook.com/v2.3/me?client_id=%s&client_secret=%s&accses_token=%s' % (fb_appid, fb_secret, session['accesskey'])) as r:
+	with urlopen('https://graph.facebook.com/v2.3/me?client_id=%s&client_secret=%s&access_token=%s' % (fb_appid, fb_secret, session['accesskey'])) as r:
 		resp = r.read()
 	j = loadjson(resp.decode("utf-8"))
 	session['displayname'] = j['name']
