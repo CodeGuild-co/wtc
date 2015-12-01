@@ -69,7 +69,6 @@ def connect():
 		'msg': escape('%s has joined the chat!' % session['displayname']),
 		'role': 'notice'
 	}, broadcast=True)
-	return True
 
 @socketio.on('disconnect')
 def disconnect():
@@ -77,4 +76,4 @@ def disconnect():
 		'room': 'willcoates',
 		'msg': escape('%s has left the chat!' % session['displayname']),
 		'role': 'notice'
-	}, broadcast=True, include_self=False)
+	}, broadcast=True)
