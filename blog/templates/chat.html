@@ -2,7 +2,25 @@
 
 {% block content %}
     <div class="container">
-        <h1>Will Coates' personal blog</h1>
         
     </div>
 {% endblock %}
+
+{$ block scripts %}
+<script>
+    $(function(){
+        var socket = io();
+        socket.on('message', function(msg){
+            $("#chat").append($("<div></div>").html(msg.msg));
+        });
+        $("#send").click(function(){
+            var msg = $("#msg").val();
+            $("#msg").val('');
+            socket.emit('message', {
+                'msg': msg,
+                'room': 'willcoates'
+            });
+        });
+    });
+</script>
+{$ endblock $}
