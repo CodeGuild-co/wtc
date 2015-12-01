@@ -70,7 +70,7 @@ def connect():
 		'room': 'broadcast',
 		'msg': 'Welcome to Will Coates\' Chat',
 		'role': 'notice'
-	}, broadcast=True, include_self=False)
+	})
 	emit('message', {
 		'room': 'willcoates',
 		'msg': escape('%s has joined the chat!' % session['displayname']),
