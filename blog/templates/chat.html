@@ -16,7 +16,7 @@
     <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
     <script>
         $(function(){
-            var socket = io();
+            var socket = io('ws://wtc.codeguild.co/');
             var rtc = new Array();
             rtc['message'] = '';
             rtc['mymessage'] = 'text-right text-primary';
