@@ -2,7 +2,7 @@
 Flask==0.10.1
 Flask-SocketIO==1.1
 eventlet==0.17.4
-gunicorn==19.3.0
+gunicorn==0.16.1
 Jinja2==2.8
 pymongo==3.1.1
 requests==2.8.1
