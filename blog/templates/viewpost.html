@@ -16,7 +16,13 @@
         {% endif %}
         <p>Posted {{ date }}</p>
         {% for p in post['post'] %}
-          <p>{{ p|safe }}</p>
+            {% if type(p) is str %}
+                <p>{{ p|safe }}</p>
+            {% elif type(p) is list %}
+                {% for l in p %}
+                    <li>{{ l }}</li>
+                {% endfor %}
+            {% endif %}
         {% endfor %}
         <div id="tags">
             {% for t in post['tags'] %}
