@@ -16,9 +16,9 @@
         {% endif %}
         <p>Posted {{ date }}</p>
         {% for p in post['post'] %}
-            {% if type(p) is str %}
+            {% if p is string %}
                 <p>{{ p|safe }}</p>
-            {% elif type(p) is list %}
+            {% elif p is sequence %}
                 {% for l in p %}
                     <li>{{ l }}</li>
                 {% endfor %}
