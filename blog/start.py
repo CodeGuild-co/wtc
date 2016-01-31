@@ -108,7 +108,7 @@ def addpost():
         posts.insert(data)
         graph.put_wall_post('I have just added a post to my blog!', attachment={
             'name': data['title'],
-            'link': 'http://wtc.codeguild.co/posts/%s/' % data['pid'],
+            'link': 'http://blog.willcoates.co.uk/posts/%s/' % data['pid'],
             'caption': 'Will Coates\' Blog',
             'description': data['post'][0]
         })
