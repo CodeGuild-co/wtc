@@ -44,6 +44,10 @@ password = getenv('password', 'test')
 # Facebook graph API
 graph = facebook.GraphAPI(access_token=getenv('FB_ACCESSKEY'), version='2.2')
 
+@app.route('/google37b658fdf31067f4.html')
+def googleverify():
+    return 'google-site-verification: google37b658fdf31067f4.html'
+
 @app.route('/')
 def home():
     posts = findposts()
