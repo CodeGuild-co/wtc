@@ -4,7 +4,10 @@
 <meta property="og:url"         content="http://wtc.codeguild.co/posts/{{ post['pid'] }}/" />
 <meta property="og:title"       content="{{ post['title'] }}" />
 <meta property="og:description" content="{{ post['post'][0] }}" />
+<meta name="description" content="{{ post['post'][0] }}"/>
 {% endblock %}
+
+{% block title %}{{ post['title'] }}{% endblock %}
 
 {% block content %}
     <div class="container">
