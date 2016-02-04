@@ -70,7 +70,7 @@ def sitemap():
                 tags[t] = 1
             else:
                 tags[t] += 1
-    return render_template('sitemap.xml', tags=sorted(tags, key=tags.get, reverse=True))
+    return render_template('sitemap.xml', tags=sorted(tags, key=tags.get, reverse=True)), 200, {'Content-Type': 'application/xml; charset=utf-8'}
 
 @app.route('/feed')
 def rss():
