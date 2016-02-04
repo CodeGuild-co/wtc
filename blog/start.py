@@ -60,6 +60,18 @@ def home():
                 tags[t] += 1
     return render_template('home.html', tags=sorted(tags, key=tags.get, reverse=True))
 
+@app.route('/sitemap.xml')
+def sitemap():
+    posts = findposts()
+    tags = {}
+    for p in posts:
+        for t in p['tags']:
+            if t not in tags:
+                tags[t] = 1
+            else:
+                tags[t] += 1
+    return render_template('sitemap.xml', tags=sorted(tags, key=tags.get, reverse=True))
+
 @app.route('/feed')
 def rss():
     # Thanks stack overflow!
