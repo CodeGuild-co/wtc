@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Sitemap designed to index the full site -->
-  {$ for p in posts %}
+  {$ for post in posts %}
     <url>
-      <loc>http://blog.willcoates.co.uk/posts/{{ p['pid'] }}/</loc>
+      <loc>http://blog.willcoates.co.uk/posts/{{ post['pid'] }}/</loc>
       <changefreq>never</changefreq>
       <priority>1.0</priority>
     </url>
