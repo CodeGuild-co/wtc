@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Sitemap designed to index the full site -->
+  {$ for p in posts %}
+    <url>
+      <loc>http://blog.willcoates.co.uk/posts/{{ p['pid'] }}/</loc>
+      <changefreq>never</changefreq>
+      <priority>1.0</priority>
+    </url>
+  {% endfor %}
+  {% for t in tags %}
+    <url>
+      <loc>http://blog.willcoates.co.uk/tags/{{ t }}/</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  {% endfor %}
+  <url>
+    <loc>http://blog.willcoates.co.uk/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+</urlset>
